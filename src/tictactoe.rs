@@ -1,15 +1,31 @@
-use std::collections::HashSet;
+use std::{
+    collections::HashSet,
+    fmt::{Display, Write},
+};
 //use itertools::izip;
 
 type Position = (usize, usize);
 
 #[derive(Debug)]
-struct Tictactoe {
+pub struct Tictactoe {
     width: usize,
     height: usize,
     occup_fields: HashSet<Position>,
     x_fields: HashSet<Position>,
     o_fields: HashSet<Position>,
+}
+
+impl Display for Tictactoe {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for y in 0..self.height {
+            for x in 0..self.width {
+                let pos = (x, y);
+                f.write_str("⬜");
+            }
+            f.write_char('\n')?;
+        }
+        Ok(())
+    }
 }
 
 impl Tictactoe {
