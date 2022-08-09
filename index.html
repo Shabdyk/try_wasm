@@ -3,14 +3,52 @@
   <head>
     <meta charset="utf-8">
     <title>hello-wasm example</title>
+    <style media="screen">
+      body {
+        font-size: 200%;
+      }
+      .field {
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
+    <div id = "root"></div>
     <script type="module">
-      import init, {greet} from "./pkg/try_wasm.js";
-      init()
-        .then(() => {
-          greet("Лошара")
-        });
+      import init, {getState} from "./pkg/try_wasm.js";
+
+      async function main() {
+       await init();
+       // console.log(getState());
+       render(getState());
+     }
+
+      function render(state) {
+        let root = document.getElementById("root");
+        root.innerHTML = "";
+
+        root.style.display = "grid";
+        root.style.gridTemplate = 'repeat(${data.length}, auto) / repeat(${data[0].width},auto)';
+
+        let data = state.split("\n").map(row => row.trim().split("/\s+/"));
+        for (let y = 0; y < data.length; y++){
+          for (let x = 0; x < data[y].length; x++){
+            let element = document.createElement("a");
+            element.classList.add("field");
+            element.href = "#";
+            element.innerText = data[y][x];
+
+            element.addEventListener("click", evt => {
+              evt.preventDefault();
+            });
+
+            root.appendChild(element);
+          }
+        }
+
+      }
+      main();
+
     </script>
   </body>
 </html>
