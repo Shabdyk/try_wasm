@@ -58,17 +58,17 @@ impl Tictactoe {
                     // if self.win(self.o_fields.clone()) {
                     //     println!("O won! {:?}", self.o_fields)
                     // }
-                } else {
-                    panic!("Type x or o!")
+                    // } else {
+                    //     panic!("Type x or o!")
                 }
                 self.occup_fields.insert(pos);
-            } else {
-                panic!("Field occupied!");
+                // } else {
+                //     panic!("Field occupied!");
             }
-        } else {
-            panic!("Position out of range!")
+            // } else {
+            //     panic!("Position out of range!")
         }
-        self.show();
+        // self.show();
     }
     pub fn show(&mut self) {
         for h in 0..self.width {

@@ -11,8 +11,7 @@ thread_local! {
 
 #[wasm_bindgen(js_name = getState)]
 pub fn get_state() -> String {
-    let ttt = Tictactoe::new(10, 10);
-    ttt.to_string()
+    TICTACTOE.with(|ttt| ttt.borrow().to_string())
 }
 
 #[wasm_bindgen(js_name = playX)]
