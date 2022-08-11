@@ -32,15 +32,16 @@
 
         let data = getState()
         .split("\n")
-        .map((row) => row.trim().split(/\s+/));
-
+        .map((row) => row.trim());
         root.style.display = "inline-grid";
-        root.style.gridTemplate = 'repeat(${data.length}, 50) / repeat(${data[0].width},50)';
 
         for (let y = 0; y < data.length; y++){
           for (let x = 0; x < data[y].length; x++){
-
             let element = document.createElement("a");
+            // element.style.display = "inline-grid";
+            // element.style.display = "grid";
+            // element.style.gridTemplate = "repeat(${data.length}, 1%) / repeat(${data[y].length},1%)";
+
             element.classList.add("field");
             element.href = "#";
             element.innerText = data[y][x];
@@ -49,9 +50,9 @@
               evt.preventDefault();
               playX(x,y);
               render();
-              console.log(x,y)
+              // console.log(data[0].length);
+              console.log(data[y]);
             });
-
             root.appendChild(element);
           }
         }
