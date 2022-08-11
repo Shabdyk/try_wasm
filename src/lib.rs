@@ -4,10 +4,10 @@ use std::cell::RefCell;
 use tictactoe::*;
 use wasm_bindgen::prelude::*;
 
-// thread_local! {
-//   static TICTACTOE: RefCell<Tictactoe>
-//     = RefCell::new(Tictactoe::new(10, 10));
-// }
+thread_local! {
+  static TICTACTOE: RefCell<Tictactoe>
+    = RefCell::new(Tictactoe::new(10, 10));
+}
 
 #[wasm_bindgen(js_name = getState)]
 pub fn get_state() -> String {
@@ -16,7 +16,9 @@ pub fn get_state() -> String {
 }
 
 #[wasm_bindgen(js_name = playX)]
-pub fn play_x() -> String {}
+pub fn play_x() -> String {
+    TICTACTOE::select('x',(1,1));
+}
 
 #[wasm_bindgen]
 extern "C" {
