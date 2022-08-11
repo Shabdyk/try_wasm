@@ -15,7 +15,7 @@
   <body>
     <div id = "root"></div>
     <script type="module">
-      import init, {getState} from "./pkg/try_wasm.js";
+      import init, {getState, playX} from "./pkg/try_wasm.js";
 
       async function main() {
        await init();
@@ -40,6 +40,9 @@
 
             element.addEventListener("click", evt => {
               evt.preventDefault();
+
+              playX(x,y);
+              render();
             });
 
             root.appendChild(element);

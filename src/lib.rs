@@ -16,8 +16,17 @@ pub fn get_state() -> String {
 }
 
 #[wasm_bindgen(js_name = playX)]
-pub fn play_x() -> String {
-    TICTACTOE::select('x',(1,1));
+pub fn play_x(x: usize, y: usize) {
+    TICTACTOE.with(|ttt| {
+        ttt.borrow_mut().select('x', (x, y));
+    })
+}
+
+#[wasm_bindgen(js_name = playO)]
+pub fn play_o(x: usize, y: usize) {
+    TICTACTOE.with(|ttt| {
+        ttt.borrow_mut().select('o', (x, y));
+    })
 }
 
 #[wasm_bindgen]

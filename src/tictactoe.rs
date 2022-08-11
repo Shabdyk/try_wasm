@@ -19,8 +19,15 @@ impl Display for Tictactoe {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for y in 0..self.height {
             for x in 0..self.width {
-                // let pos = (x, y);
-                f.write_str("⬜");
+                let pos = (x, y);
+
+                if self.x_fields.contains(&pos) {
+                    f.write_str("❌")?;
+                } else if self.o_fields.contains(&pos) {
+                    f.write_str("⭕")?;
+                } else {
+                    f.write_str("⬜")?;
+                };
             }
             f.write_char('\n')?;
         }
@@ -43,14 +50,14 @@ impl Tictactoe {
             if !self.occup_fields.contains(&pos) {
                 if x_or_o == 'x' {
                     self.x_fields.insert(pos);
-                    if self.win(self.x_fields.clone()) {
-                        println!("X won! {:?}", self.x_fields)
-                    };
+                    // if self.win(self.x_fields.clone()) {
+                    //     println!("X won! {:?}", self.x_fields)
+                    // };
                 } else if x_or_o == 'o' {
                     self.o_fields.insert(pos);
-                    if self.win(self.o_fields.clone()) {
-                        println!("O won! {:?}", self.o_fields)
-                    }
+                    // if self.win(self.o_fields.clone()) {
+                    //     println!("O won! {:?}", self.o_fields)
+                    // }
                 } else {
                     panic!("Type x or o!")
                 }
