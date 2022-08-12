@@ -19,10 +19,8 @@
         getState,
         playX,
       } from "./pkg/try_wasm.js";
-
       async function main() {
        await init();
-       // console.log(getState());
        render();
      }
 
@@ -31,8 +29,8 @@
         root.innerHTML = "";
 
         let data = getState()
-        .split("\n")
-        .map((row) => row.trim().split(/\s+/));
+            .split("\n")
+            .map((row) => row.trim().split(/\s+/));
         root.style.display = "inline-grid";
         root.style.gridTemplate = `repeat(${data.length}, auto) / repeat(${data[0].length}, auto)`;
 
