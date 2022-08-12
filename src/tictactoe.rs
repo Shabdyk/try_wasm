@@ -22,11 +22,11 @@ impl Display for Tictactoe {
                 let pos = (x, y);
 
                 if self.x_fields.contains(&pos) {
-                    f.write_str("❌")?;
+                    f.write_str("❌ ")?;
                 } else if self.o_fields.contains(&pos) {
-                    f.write_str("⭕")?;
+                    f.write_str("⭕ ")?;
                 } else {
-                    f.write_str("⬜")?;
+                    f.write_str("⬜ ")?;
                 };
             }
             f.write_char('\n')?;

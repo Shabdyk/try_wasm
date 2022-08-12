@@ -23,24 +23,23 @@
       async function main() {
        await init();
        // console.log(getState());
-       render(getState());
+       render();
      }
 
-      function render(state) {
+      function render() {
         let root = document.getElementById("root");
         root.innerHTML = "";
 
         let data = getState()
         .split("\n")
-        .map((row) => row.trim());
+        .map((row) => row.trim().split(/\s+/));
         root.style.display = "inline-grid";
+        root.style.gridTemplate = `repeat(${data.length}, auto) / repeat(${data[0].length}, auto)`;
 
         for (let y = 0; y < data.length; y++){
           for (let x = 0; x < data[y].length; x++){
+
             let element = document.createElement("a");
-            // element.style.display = "inline-grid";
-            // element.style.display = "grid";
-            // element.style.gridTemplate = "repeat(${data.length}, 1%) / repeat(${data[y].length},1%)";
 
             element.classList.add("field");
             element.href = "#";
@@ -50,8 +49,7 @@
               evt.preventDefault();
               playX(x,y);
               render();
-              // console.log(data[0].length);
-              console.log(data[y]);
+
             });
             root.appendChild(element);
           }
