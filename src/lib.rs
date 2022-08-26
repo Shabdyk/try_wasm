@@ -15,16 +15,20 @@ pub fn get_state() -> String {
 }
 
 #[wasm_bindgen(js_name = playX)]
-pub fn play_x(x: usize, y: usize) {
+pub fn play_x(x: usize, y: usize) -> bool {
     TICTACTOE.with(|ttt| {
         ttt.borrow_mut().select('x', (x, y));
+        let chkx = ttt.borrow_mut().x_fields.clone();
+        ttt.borrow_mut().win(chkx)
     })
 }
 
 #[wasm_bindgen(js_name = playO)]
-pub fn play_o(x: usize, y: usize) {
+pub fn play_o(x: usize, y: usize) -> bool {
     TICTACTOE.with(|ttt| {
         ttt.borrow_mut().select('o', (x, y));
+        let chko = ttt.borrow_mut().o_fields.clone();
+        ttt.borrow_mut().win(chko)
     })
 }
 

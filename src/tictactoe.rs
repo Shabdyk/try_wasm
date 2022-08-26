@@ -11,8 +11,8 @@ pub struct Tictactoe {
     width: usize,
     height: usize,
     occup_fields: HashSet<Position>,
-    x_fields: HashSet<Position>,
-    o_fields: HashSet<Position>,
+    pub x_fields: HashSet<Position>,
+    pub o_fields: HashSet<Position>,
 }
 
 impl Display for Tictactoe {
@@ -88,7 +88,7 @@ impl Tictactoe {
         }
         println!("____________________")
     }
-    fn win(&mut self, chk: HashSet<Position>) -> bool {
+    pub fn win(&mut self, chk: HashSet<Position>) -> bool {
         //Horizontal/Vertical for nxm
         let mut res_h = false;
         let mut res_v = false;
